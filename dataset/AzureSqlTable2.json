@@ -1,0 +1,33 @@
+{
+	"name": "AzureSqlTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "varchar"
+			},
+			{
+				"name": "name1",
+				"type": "varchar"
+			},
+			{
+				"name": "parent_id",
+				"type": "varchar"
+			},
+			{
+				"name": "load_date",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "legothemes"
+		}
+	}
+}
