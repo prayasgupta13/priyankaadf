@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "cathtutorialadf"
+		},
+		"ADLSgen2_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase_connectionString": {
+			"value": ""
+		},
+		"errorlog_connectionString": {
+			"value": ""
+		},
+		"lsdynamics365_password": {
+			"value": ""
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"ADLSgen2_properties_typeProperties_url": {
+			"value": "https://cathtutorialadls.dfs.core.windows.net"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://cdn.rebrickable.com/media/downloads/"
+		},
+		"lsdynamics365_properties_typeProperties_username": {
+			"value": "crmreport.srv@agreeya.net"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
