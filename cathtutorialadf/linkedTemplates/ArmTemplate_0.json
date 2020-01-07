@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLSgen2'"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
 		"AzureSqlDatabase_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase'"
@@ -23,9 +27,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'lsdynamics365'"
 		},
-		"AzureBlobStorage1_connectionString": {
+		"AzureSynapseAnalytics1_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
 		},
 		"ADLSgen2_properties_typeProperties_url": {
 			"type": "string",
@@ -57,6 +61,19 @@
 						"type": "SecureString",
 						"value": "[parameters('ADLSgen2_accountKey')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -124,14 +141,14 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalytics1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureBlobStorage",
+				"type": "AzureSqlDW",
 				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+					"connectionString": "[parameters('AzureSynapseAnalytics1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -254,108 +271,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/HTTPS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "HttpServer1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "HttpServerLocation",
-						"relativeUrl": "themes.csv"
-					},
-					"columnDelimiter": ",",
-					"rowDelimiter": "\n",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "id",
-						"type": "String"
-					},
-					{
-						"name": "name",
-						"type": "String"
-					},
-					{
-						"name": "parent_id",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/HttpServer1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/EmployeeFiles')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Employee1.csv",
-						"container": "scd"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "EmpID",
-						"type": "String"
-					},
-					{
-						"name": "Region",
-						"type": "String"
-					},
-					{
-						"name": "Status",
-						"type": "String"
-					},
-					{
-						"name": "Function",
-						"type": "String"
-					},
-					{
-						"name": "Level",
-						"type": "String"
-					},
-					{
-						"name": "Role",
-						"type": "String"
-					},
-					{
-						"name": "StartDate",
-						"type": "String"
-					},
-					{
-						"name": "EndDate",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/DimEmp')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -422,6 +337,168 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EmployeeFiles')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Employee1.csv",
+						"container": "scd"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "EmpID",
+						"type": "String"
+					},
+					{
+						"name": "Region",
+						"type": "String"
+					},
+					{
+						"name": "Status",
+						"type": "String"
+					},
+					{
+						"name": "Function",
+						"type": "String"
+					},
+					{
+						"name": "Level",
+						"type": "String"
+					},
+					{
+						"name": "Role",
+						"type": "String"
+					},
+					{
+						"name": "StartDate",
+						"type": "String"
+					},
+					{
+						"name": "EndDate",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/HTTPS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HttpServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation",
+						"relativeUrl": "themes.csv"
+					},
+					"columnDelimiter": ",",
+					"rowDelimiter": "\n",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "String"
+					},
+					{
+						"name": "name",
+						"type": "String"
+					},
+					{
+						"name": "parent_id",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/HttpServer1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Polybase')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Truncatestaging",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[spTruncateStaging]"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureSynapseAnalytics1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "load into external table",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Truncatestaging",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[spLoadDataFromBLOBtoAzureDW]"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureSynapseAnalytics1",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics1')]"
 			]
 		},
 		{
@@ -553,45 +630,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "ADLS",
-								"type": "DatasetReference"
-							},
-							"name": "ADLS",
-							"typeProperties": {}
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "AzureSqlTable1",
-								"type": "DatasetReference"
-							},
-							"name": "sqlsink"
-						}
-					],
-					"transformations": [
-						{
-							"name": "DerivedColumn1"
-						}
-					],
-					"script": "\n\nsource(output(\n\t\tid as string,\n\t\tname as string,\n\t\tparent_id as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> ADLS\nADLS derive(load_date = currentDate()) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tid as string,\n\t\tname1 as string,\n\t\tparent_id as string,\n\t\tload_date as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tmapColumn(\n\t\tid,\n\t\tname1 = name,\n\t\tparent_id,\n\t\tload_date\n\t)) ~> sqlsink"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ADLS')]",
-				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/DimEmployeeLoader2')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -693,6 +731,45 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/EmployeeFiles')]",
 				"[concat(variables('factoryId'), '/datasets/DimEmp')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ADLS",
+								"type": "DatasetReference"
+							},
+							"name": "ADLS",
+							"typeProperties": {}
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTable1",
+								"type": "DatasetReference"
+							},
+							"name": "sqlsink"
+						}
+					],
+					"transformations": [
+						{
+							"name": "DerivedColumn1"
+						}
+					],
+					"script": "\n\nsource(output(\n\t\tid as string,\n\t\tname as string,\n\t\tparent_id as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> ADLS\nADLS derive(load_date = currentDate()) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tid as string,\n\t\tname1 as string,\n\t\tparent_id as string,\n\t\tload_date as date\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tmapColumn(\n\t\tid,\n\t\tname1 = name,\n\t\tparent_id,\n\t\tload_date\n\t)) ~> sqlsink"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ADLS')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
 			]
 		},
 		{

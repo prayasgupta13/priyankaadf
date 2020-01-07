@@ -8,6 +8,9 @@
 		"ADLSgen2_accountKey": {
 			"value": ""
 		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
 		"AzureSqlDatabase_connectionString": {
 			"value": ""
 		},
@@ -17,7 +20,7 @@
 		"lsdynamics365_password": {
 			"value": ""
 		},
-		"AzureBlobStorage1_connectionString": {
+		"AzureSynapseAnalytics1_connectionString": {
 			"value": ""
 		},
 		"ADLSgen2_properties_typeProperties_url": {

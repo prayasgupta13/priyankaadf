@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLSgen2'"
 		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
 		"AzureSqlDatabase_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase'"
@@ -23,9 +27,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'lsdynamics365'"
 		},
-		"AzureBlobStorage1_connectionString": {
+		"AzureSynapseAnalytics1_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+			"metadata": "Secure string for 'connectionString' of 'AzureSynapseAnalytics1'"
 		},
 		"ADLSgen2_properties_typeProperties_url": {
 			"type": "string",
@@ -69,6 +73,9 @@
 					"ADLSgen2_accountKey": {
 						"value": "[parameters('ADLSgen2_accountKey')]"
 					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
 					"AzureSqlDatabase_connectionString": {
 						"value": "[parameters('AzureSqlDatabase_connectionString')]"
 					},
@@ -78,8 +85,8 @@
 					"lsdynamics365_password": {
 						"value": "[parameters('lsdynamics365_password')]"
 					},
-					"AzureBlobStorage1_connectionString": {
-						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					"AzureSynapseAnalytics1_connectionString": {
+						"value": "[parameters('AzureSynapseAnalytics1_connectionString')]"
 					},
 					"ADLSgen2_properties_typeProperties_url": {
 						"value": "[parameters('ADLSgen2_properties_typeProperties_url')]"
