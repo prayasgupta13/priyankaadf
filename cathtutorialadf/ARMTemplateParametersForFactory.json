@@ -31,12 +31,6 @@
 		},
 		"lsdynamics365_properties_typeProperties_username": {
 			"value": "crmreport.srv@agreeya.net"
-		},
-		"trigger1_properties_pipeline_parameters_windowStart": {
-			"value": "@pipeline().parameters.windowStart"
-		},
-		"trigger1_properties_pipeline_parameters_windowEnd": {
-			"value": "@pipeline().parameters.windowEnd"
 		}
 	}
 }

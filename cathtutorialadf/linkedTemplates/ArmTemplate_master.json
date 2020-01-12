@@ -43,14 +43,6 @@
 			"type": "string",
 			"defaultValue": "crmreport.srv@agreeya.net"
 		},
-		"trigger1_properties_pipeline_parameters_windowStart": {
-			"type": "string",
-			"defaultValue": "@pipeline().parameters.windowStart"
-		},
-		"trigger1_properties_pipeline_parameters_windowEnd": {
-			"type": "string",
-			"defaultValue": "@pipeline().parameters.windowEnd"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -122,12 +114,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"trigger1_properties_pipeline_parameters_windowStart": {
-						"value": "[parameters('trigger1_properties_pipeline_parameters_windowStart')]"
-					},
-					"trigger1_properties_pipeline_parameters_windowEnd": {
-						"value": "[parameters('trigger1_properties_pipeline_parameters_windowEnd')]"
 					}
 				}
 			},
