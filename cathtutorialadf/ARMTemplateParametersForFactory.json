@@ -14,13 +14,13 @@
 		"AzureSqlDatabase_connectionString": {
 			"value": ""
 		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
 		"errorlog_connectionString": {
 			"value": ""
 		},
 		"lsdynamics365_password": {
-			"value": ""
-		},
-		"AzureSynapseAnalytics1_connectionString": {
 			"value": ""
 		},
 		"ADLSgen2_properties_typeProperties_url": {
@@ -31,6 +31,12 @@
 		},
 		"lsdynamics365_properties_typeProperties_username": {
 			"value": "crmreport.srv@agreeya.net"
+		},
+		"Trigger_1oz_properties_pipeline_parameters_windowStart": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"Trigger_1oz_properties_pipeline_parameters_windowEnd": {
+			"value": "@trigger().outputs.windowEndTime"
 		}
 	}
 }
