@@ -2,7 +2,7 @@
 	"name": "Trigger_1oz",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipeline": {
 			"pipelineReference": {
 				"referenceName": "DeltaCopyFromBlobPipeline",
@@ -22,7 +22,7 @@
 		"type": "TumblingWindowTrigger",
 		"typeProperties": {
 			"frequency": "Minute",
-			"interval": 5,
+			"interval": 15,
 			"startTime": "2020-01-12T19:30:00.000Z",
 			"delay": "00:00:00",
 			"maxConcurrency": 50,
