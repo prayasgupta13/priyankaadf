@@ -31,11 +31,11 @@
 							"recursive": false,
 							"wildcardFileName": "*",
 							"modifiedDatetimeStart": {
-								"value": "@pipeline().parameters.windowStart",
+								"value": "@{pipeline().parameters.windowStart}",
 								"type": "Expression"
 							},
 							"modifiedDatetimeEnd": {
-								"value": "@pipeline().parameters.windowEnd",
+								"value": "@{pipeline().parameters.windowEnd}",
 								"type": "Expression"
 							}
 						}
