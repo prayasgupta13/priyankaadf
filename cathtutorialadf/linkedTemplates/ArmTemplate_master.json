@@ -43,13 +43,13 @@
 			"type": "string",
 			"defaultValue": "crmreport.srv@agreeya.net"
 		},
-		"Trigger_1oz_properties_pipeline_parameters_windowStart": {
+		"trigger1_properties_pipeline_parameters_windowStart": {
 			"type": "string",
-			"defaultValue": "@trigger().outputs.windowStartTime"
+			"defaultValue": "@pipeline().parameters.windowStart"
 		},
-		"Trigger_1oz_properties_pipeline_parameters_windowEnd": {
+		"trigger1_properties_pipeline_parameters_windowEnd": {
 			"type": "string",
-			"defaultValue": "@trigger().outputs.windowEndTime"
+			"defaultValue": "@pipeline().parameters.windowEnd"
 		},
 		"containerUri": {
 			"type": "string",
@@ -123,11 +123,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"Trigger_1oz_properties_pipeline_parameters_windowStart": {
-						"value": "[parameters('Trigger_1oz_properties_pipeline_parameters_windowStart')]"
+					"trigger1_properties_pipeline_parameters_windowStart": {
+						"value": "[parameters('trigger1_properties_pipeline_parameters_windowStart')]"
 					},
-					"Trigger_1oz_properties_pipeline_parameters_windowEnd": {
-						"value": "[parameters('Trigger_1oz_properties_pipeline_parameters_windowEnd')]"
+					"trigger1_properties_pipeline_parameters_windowEnd": {
+						"value": "[parameters('trigger1_properties_pipeline_parameters_windowEnd')]"
 					}
 				}
 			},

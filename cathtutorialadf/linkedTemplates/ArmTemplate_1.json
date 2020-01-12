@@ -7,13 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "cathtutorialadf"
 		},
-		"Trigger_1oz_properties_pipeline_parameters_windowStart": {
+		"trigger1_properties_pipeline_parameters_windowStart": {
 			"type": "string",
-			"defaultValue": "@trigger().outputs.windowStartTime"
+			"defaultValue": "@pipeline().parameters.windowStart"
 		},
-		"Trigger_1oz_properties_pipeline_parameters_windowEnd": {
+		"trigger1_properties_pipeline_parameters_windowEnd": {
 			"type": "string",
-			"defaultValue": "@trigger().outputs.windowEndTime"
+			"defaultValue": "@pipeline().parameters.windowEnd"
 		}
 	},
 	"variables": {
@@ -248,33 +248,27 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Trigger_1oz')]",
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipeline": {
 					"pipelineReference": {
 						"referenceName": "DeltaCopyFromBlobPipeline",
 						"type": "PipelineReference"
 					},
 					"parameters": {
-						"windowStart": {
-							"type": "Expression",
-							"value": "[parameters('Trigger_1oz_properties_pipeline_parameters_windowStart')]"
-						},
-						"windowEnd": {
-							"type": "Expression",
-							"value": "[parameters('Trigger_1oz_properties_pipeline_parameters_windowEnd')]"
-						}
+						"windowStart": "[parameters('trigger1_properties_pipeline_parameters_windowStart')]",
+						"windowEnd": "[parameters('trigger1_properties_pipeline_parameters_windowEnd')]"
 					}
 				},
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
-					"frequency": "Hour",
-					"interval": 5,
-					"startTime": "2020-01-12T19:30:00.000Z",
+					"frequency": "Minute",
+					"interval": 15,
+					"startTime": "2020-01-12T20:00:00.000Z",
 					"delay": "00:00:00",
 					"maxConcurrency": 50,
 					"retryPolicy": {
