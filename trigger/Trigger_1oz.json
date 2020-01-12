@@ -21,7 +21,7 @@
 		},
 		"type": "TumblingWindowTrigger",
 		"typeProperties": {
-			"frequency": "Hour",
+			"frequency": "Minute",
 			"interval": 5,
 			"startTime": "2020-01-12T19:30:00.000Z",
 			"delay": "00:00:00",
