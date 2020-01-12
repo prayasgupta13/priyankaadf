@@ -678,10 +678,12 @@
 				],
 				"parameters": {
 					"windowStart": {
-						"type": "String"
+						"type": "String",
+						"defaultValue": "00:00:00"
 					},
 					"windowEnd": {
-						"type": "String"
+						"type": "String",
+						"defaultValue": "00:00:00"
 					}
 				},
 				"annotations": []
