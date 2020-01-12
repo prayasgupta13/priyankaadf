@@ -14,6 +14,14 @@
 		"Trigger_nox_properties_pipeline_parameters_windowEnd": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndTime"
+		},
+		"triggerold_properties_pipeline_parameters_windowStart": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowStartTime"
+		},
+		"triggerold_properties_pipeline_parameters_windowEnd": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndTime"
 		}
 	},
 	"variables": {
@@ -577,7 +585,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"name": "[concat(parameters('factoryName'), '/triggerold')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -588,13 +596,22 @@
 						"referenceName": "DeltaCopyFromBlobPipeline",
 						"type": "PipelineReference"
 					},
-					"parameters": {}
+					"parameters": {
+						"windowStart": {
+							"type": "Expression",
+							"value": "[parameters('triggerold_properties_pipeline_parameters_windowStart')]"
+						},
+						"windowEnd": {
+							"type": "Expression",
+							"value": "[parameters('triggerold_properties_pipeline_parameters_windowEnd')]"
+						}
+					}
 				},
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
 					"frequency": "Minute",
 					"interval": 15,
-					"startTime": "2020-01-13T00:00:00.000Z",
+					"startTime": "2020-01-12T18:46:00.000Z",
 					"delay": "00:00:00",
 					"maxConcurrency": 50,
 					"retryPolicy": {

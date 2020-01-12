@@ -51,6 +51,14 @@
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowEndTime"
 		},
+		"triggerold_properties_pipeline_parameters_windowStart": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowStartTime"
+		},
+		"triggerold_properties_pipeline_parameters_windowEnd": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndTime"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -128,6 +136,12 @@
 					},
 					"Trigger_nox_properties_pipeline_parameters_windowEnd": {
 						"value": "[parameters('Trigger_nox_properties_pipeline_parameters_windowEnd')]"
+					},
+					"triggerold_properties_pipeline_parameters_windowStart": {
+						"value": "[parameters('triggerold_properties_pipeline_parameters_windowStart')]"
+					},
+					"triggerold_properties_pipeline_parameters_windowEnd": {
+						"value": "[parameters('triggerold_properties_pipeline_parameters_windowEnd')]"
 					}
 				}
 			},

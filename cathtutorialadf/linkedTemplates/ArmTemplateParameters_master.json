@@ -38,6 +38,12 @@
 		"Trigger_nox_properties_pipeline_parameters_windowEnd": {
 			"value": "@trigger().outputs.windowEndTime"
 		},
+		"triggerold_properties_pipeline_parameters_windowStart": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"triggerold_properties_pipeline_parameters_windowEnd": {
+			"value": "@trigger().outputs.windowEndTime"
+		},
 		"containerUri": {
 			"value": ""
 		},
