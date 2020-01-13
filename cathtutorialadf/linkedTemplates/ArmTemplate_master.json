@@ -43,14 +43,6 @@
 			"type": "string",
 			"defaultValue": "crmreport.srv@agreeya.net"
 		},
-		"Trigger_nox_properties_pipeline_parameters_windowStart": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.windowStartTime"
-		},
-		"Trigger_nox_properties_pipeline_parameters_windowEnd": {
-			"type": "string",
-			"defaultValue": "@trigger().outputs.windowEndTime"
-		},
 		"triggerold_properties_pipeline_parameters_windowStart": {
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowStartTime"
@@ -130,12 +122,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"Trigger_nox_properties_pipeline_parameters_windowStart": {
-						"value": "[parameters('Trigger_nox_properties_pipeline_parameters_windowStart')]"
-					},
-					"Trigger_nox_properties_pipeline_parameters_windowEnd": {
-						"value": "[parameters('Trigger_nox_properties_pipeline_parameters_windowEnd')]"
 					},
 					"triggerold_properties_pipeline_parameters_windowStart": {
 						"value": "[parameters('triggerold_properties_pipeline_parameters_windowStart')]"
